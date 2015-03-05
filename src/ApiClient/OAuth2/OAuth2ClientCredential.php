@@ -78,7 +78,7 @@ class OAuth2ClientCredential {
         
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
-        $this->path = 'http://app.evalandgo.local/api';
+        $this->path = 'http://app.evalandc.dev/api';
         
         $this->query = array(
             'grant_type'    => 'client_credentials',
@@ -121,7 +121,6 @@ class OAuth2ClientCredential {
         if(!isset($_SESSION['oauth2']) || $_SESSION['oauth2']['client_id'] != $query['client_id'] || $_SESSION['oauth2']['client_secret'] != $query['client_secret'] || $_SESSION['oauth2']['expires'] <= time()){
             $response = $this->http->post($this->path.'/oauth2/token', null, $query, array('exceptions' => false))->send();
             $data = json_decode((string) $response->getBody(), true);
-            
             if(isset($data['error']))
                 throw new \Exception($data['error_description'], 401);
 

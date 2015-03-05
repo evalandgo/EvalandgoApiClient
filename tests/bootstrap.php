@@ -2,6 +2,10 @@
 
 session_start();
 
-// Include the composer autoloader
-$loader = require dirname(__DIR__) . '/vendor/autoload.php';
+use Doctrine\Common\Annotations\AnnotationRegistry;
+
+$loader = require __DIR__.'/../vendor/autoload.php';
+
+AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+
 $loader->add('ApiClient\\Test', __DIR__);
