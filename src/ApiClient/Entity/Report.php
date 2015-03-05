@@ -50,8 +50,32 @@ class Report extends ResourceHandler {
      * @JSA\Type("string")
      */
     protected $title;
+
+    public function setId($id) {
+        $this->id = $id;
+    }
     
-        
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setQuestionnaire_id($questionnaire_id) {
+        $this->questionnaire_id = $questionnaire_id;
+    }
+
+    public function getQuestionnaire_id() {
+        return $this->questionnaire_id;
+    }
+
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+            
     /**
      * Obtain the Report resource for the given identifier.
      *

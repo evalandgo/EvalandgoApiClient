@@ -110,7 +110,23 @@ class Question extends ResourceHandler {
     public function getHide() {
         return $this->hide;
     }
-        
+
+    public function setSubtype($subtype) {
+        $this->subtype = $subtype;
+    }
+    
+    public function getSubtype() {
+        return $this->subtype;
+    }
+
+    public function setVar_url($var_url) {
+        $this->var_url = $var_url;
+    }
+
+    public function getVar_url() {
+        return $this->var_url;
+    }
+
     /**
      * Obtain the Questionnaire resource for the given identifier.
      *
