@@ -96,8 +96,22 @@ class Report extends ResourceHandler {
      * @param string $questionnairedId
      * @return Report[]
      */
-    public static function all($credential, $questionnairedId) {
-        $json = self::createRequest($credential, "/questionnaires/$questionnairedId/reports", 'GET');
+    public static function all($credential, $qaireId) {
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/reports", 'GET');
+        
+        return self::fromJsonStatic($json, get_called_class());
+    }
+
+    /**
+     * Obtain the Report resource for the given identifier.
+     *
+     * @param OAuth2ClientCredential $credential authentication system with credential OAuth 2.0 
+     * @param integer $qaireId
+     * @param integer $reportId
+     * @return Report
+     */
+    public static function get($credential, $qaireId, $reportId) {
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/reports/$reportId", 'GET');
         
         return self::fromJsonStatic($json, get_called_class());
     }
