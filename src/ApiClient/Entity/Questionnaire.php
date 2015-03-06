@@ -136,7 +136,7 @@ class Questionnaire extends ResourceHandler {
      * @param OAuth2ClientCredential $credential authentication system with credential OAuth 2.0 
      * @return Questionnaire
      */
-    public static function get($questionnairedId, $credential) {
+    public static function get($credential, $questionnairedId) {
         $json = self::createRequest($credential, '/questionnaires/'.$questionnairedId, 'GET');
         
         return self::fromJsonStatic($json, get_called_class());

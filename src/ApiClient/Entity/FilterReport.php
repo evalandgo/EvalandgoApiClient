@@ -115,4 +115,30 @@ class FilterReport extends ResourceHandler {
         $this->fromJson($json);
         return json_decode($json);
     }
+
+    /**
+     * Obtain the FilterReport resource for the given identifier.
+     *
+     * @param string $questionnairedId
+     * @param OAuth2ClientCredential $credential authentication system with credential OAuth 2.0 
+     * @return FilterReport
+     */
+    public static function all($credential, $qaireId, $reportId) {
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters", 'GET');
+        
+        return self::fromJsonStatic($json, get_called_class());
+    }
+
+    /**
+     * Obtain the FilterReport resource for the given identifier.
+     *
+     * @param integer $questionnairedId
+     * @param OAuth2ClientCredential $credential authentication system with credential OAuth 2.0 
+     * @return FilterReport
+     */
+    public static function get($credential, $qaireId, $reportId, $filterId) {
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters/".$filterId, 'GET');
+        
+        return self::fromJsonStatic($json, get_called_class());
+    }
 }
