@@ -30,11 +30,11 @@ use ApiClient\Rest\ResourceHandler;
 use JMS\Serializer\Annotation as JSA;
 
 /**
- * Class Report
+ * Class FilterReport
  *
  * @author Valentin Boschatel <valentin.boschatel@evalandgo.com>
  */
-class Report extends ResourceHandler {
+class FilterReport extends ResourceHandler {
     
     /** 
      * @JSA\Type("integer")
@@ -42,19 +42,24 @@ class Report extends ResourceHandler {
     protected $id;
     
     /** 
-     * @JSA\Type("integer")
-     */
-    protected $questionnaire_id;
-    
-    /** 
      * @JSA\Type("string")
      */
     protected $title;
     
+    /**
+     * @JSA\Type("array<array<integer>>")
+     */
+    protected $filter_question;
+    
     /** 
      * @JSA\Type("string")
      */
-    protected $public_url;
+    protected $filter_question_active;
+    
+    /** 
+     * @JSA\Type("string")
+     */
+    protected $url_report_complement;
 
     public function setId($id) {
         $this->id = $id;
@@ -62,14 +67,6 @@ class Report extends ResourceHandler {
     
     public function getId() {
         return $this->id;
-    }
-
-    public function setQuestionnaire_id($questionnaire_id) {
-        $this->questionnaire_id = $questionnaire_id;
-    }
-
-    public function getQuestionnaire_id() {
-        return $this->questionnaire_id;
     }
 
     public function setTitle($title) {
@@ -80,25 +77,42 @@ class Report extends ResourceHandler {
         return $this->title;
     }
 
-    public function setPublic_url($public_url) {
-        $this->public_url = $public_url;
-    }
-    
-    public function getPublic_url() {
-        return $this->public_url;
+    public function setFilter_question($filter_question) {
+        $this->filter_question = $filter_question;
     }
 
-                
+    public function getFilter_question() {
+        return $this->filter_question;
+    }
+
+    public function setFilter_question_active($filter_question_active) {
+        $this->filter_question_active = $filter_question_active;
+    }
+
+    public function getFilter_question_active() {
+        return $this->filter_question_active;
+    }
+
+    public function setUrl_report_complement($url_report_complement) {
+        $this->url_report_complement = $url_report_complement;
+    }
+
+    public function getUrl_report_complement() {
+        return $this->url_report_complement;
+    }
+
     /**
-     * Obtain the Report resource for the given identifier.
+     * Creates a new FilterReport Resource
      *
      * @param OAuth2ClientCredential $credential authentication system with credential OAuth 2.0 
-     * @param string $questionnairedId
-     * @return Report[]
+     * @return FilterReport
      */
-    public static function all($credential, $questionnairedId) {
-        $json = self::createRequest($credential, "/questionnaires/$questionnairedId/reports", 'GET');
+    public function create($credential, $qaireId, $reportId) {
+        $post = get_object_vars($this);
         
-        return self::fromJsonStatic($json, get_called_class());
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters", 'POST', $post);
+        
+        $this->fromJson($json);
+        return json_decode($json);
     }
 }
