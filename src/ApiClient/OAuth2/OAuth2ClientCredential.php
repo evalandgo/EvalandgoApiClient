@@ -118,6 +118,7 @@ class OAuth2ClientCredential {
     }
     
     private function getToken($query) {
+        unset($_SESSION['oauth2']);
         if(!isset($_SESSION['oauth2']) || $_SESSION['oauth2']['client_id'] != $query['client_id'] || $_SESSION['oauth2']['client_secret'] != $query['client_secret'] || $_SESSION['oauth2']['expires'] <= time()){
             $response = $this->http->post($this->path.'/oauth2/token', null, $query, array('exceptions' => false))->send();
             $data = json_decode((string) $response->getBody(), true);
