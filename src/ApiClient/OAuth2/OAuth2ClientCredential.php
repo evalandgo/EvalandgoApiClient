@@ -78,7 +78,7 @@ class OAuth2ClientCredential {
         
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
-        $this->path = 'http://app.evalandc.dev/api';
+        $this->path = 'http://app.evalandgo.com/api';
         
         $this->query = array(
             'grant_type'    => 'client_credentials',
