@@ -64,6 +64,11 @@ class Question extends ResourceHandler {
     /**
      * @JSA\Type("boolean")
      */
+    protected $nominative;
+    
+    /**
+     * @JSA\Type("boolean")
+     */
     protected $hide;
     
     /**
@@ -117,6 +122,14 @@ class Question extends ResourceHandler {
     
     public function getSubtype() {
         return $this->subtype;
+    }
+
+    public function setNominative($nominative) {
+        $this->nominative = $nominative;
+    }
+
+    public function getNominative() {
+        return $this->nominative;
     }
 
     public function setVar_url($var_url) {
