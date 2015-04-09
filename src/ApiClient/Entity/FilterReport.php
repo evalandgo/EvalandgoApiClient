@@ -110,7 +110,7 @@ class FilterReport extends ResourceHandler {
     public function create($credential, $qaireId, $reportId) {
         $post = get_object_vars($this);
         
-        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters", 'POST', $post);
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/reports/$reportId/filters", 'POST', $post);
         
         $this->fromJson($json);
         return json_decode($json);
@@ -124,7 +124,7 @@ class FilterReport extends ResourceHandler {
      * @return FilterReport
      */
     public static function all($credential, $qaireId, $reportId) {
-        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters", 'GET');
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/reports/$reportId/filters", 'GET');
         
         return self::fromJsonStatic($json, get_called_class());
     }
@@ -137,7 +137,7 @@ class FilterReport extends ResourceHandler {
      * @return FilterReport
      */
     public static function get($credential, $qaireId, $reportId, $filterId) {
-        $json = self::createRequest($credential, "/questionnaires/$qaireId/report/$reportId/filters/".$filterId, 'GET');
+        $json = self::createRequest($credential, "/questionnaires/$qaireId/reports/$reportId/filters/".$filterId, 'GET');
         
         return self::fromJsonStatic($json, get_called_class());
     }
