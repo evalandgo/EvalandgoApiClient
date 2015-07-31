@@ -6,7 +6,7 @@ In composer.json file, add :
 ```json
 {
     "require": {
-        "evalandgo/evalandgo-api-client": "1.0"
+        "evalandgo/evalandgo-api-client": "dev-master"
     }
 }
 ```
