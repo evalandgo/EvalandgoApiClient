@@ -11,7 +11,7 @@ echo 'Hello world';
 
 use ApiClient\Client;
 
-$client = new Client('j12kt54iica78636d93.55470011'/*client_id*/, 'f6zkt54feca12e6ce00.32882853'/*client_secret*/);
+$client = new Client('client_id', 'client_secret');
 
 /** get **/
 //$question = $client->resource('question')->get($questionnaireId, $questionId);
