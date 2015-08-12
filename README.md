@@ -12,7 +12,7 @@ In composer.json file, add :
 ```
 
 ## OAuth2 Storage
-In order to don't generate a token before each request, this library stores the OAuth2 information in basic sessions.
+In order to don't generate a token before each request, this library stores the OAuth2 information in native sessions.
 
 Default storage object : ApiClient\OAuth2\Storage\SessionStorage
 

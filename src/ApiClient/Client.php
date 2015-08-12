@@ -3,6 +3,7 @@
 namespace ApiClient;
 
 use ApiClient\OAuth2\OAuth2ClientCredential;
+use ApiClient\OAuth2\Storage\StorageInterface;
 
 class Client
 {
