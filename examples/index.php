@@ -9,7 +9,8 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 use ApiClient\Client;
 
-$client = new Client('client_id', 'client_secret');
+//$client = new Client('client_id', 'client_secret');
+$client = new Client('j12kt54iica78636d93.55470011', 'f6zkt54feca12e6ce00.32882853');
 
 echo '---- Folder ----';
 $folders = $client->resource('folderQuestionnaire')->all();

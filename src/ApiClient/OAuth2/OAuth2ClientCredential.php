@@ -26,6 +26,8 @@
 
 namespace ApiClient\OAuth2;
 
+use ApiClient\OAuth2\Storage\SessionStorage;
+use ApiClient\OAuth2\Storage\StorageInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Cviebrock\Guzzle\Plugin\StripBom\StripBomPlugin;
 
@@ -51,6 +53,12 @@ class OAuth2ClientCredential {
     private $clientSecret;
 
     /**
+     *
+     * @var StorageInterface $storage
+     */
+    private $storage;
+
+    /**
      * Generated Access Token
      *
      * @var string $accessToken
@@ -64,7 +72,7 @@ class OAuth2ClientCredential {
      */
     private $http;
     
-    private $path;
+    private $path = 'http://app.evalandgo.com/api';
 
     /**
      * Construct
@@ -72,13 +80,14 @@ class OAuth2ClientCredential {
      * @param string $clientId     client id obtained from the developer portal
      * @param string $clientSecret client secret obtained from the developer portal
      */
-    public function __construct($clientId, $clientSecret) {
-        
-        if(session_status()!=PHP_SESSION_ACTIVE) throw new \Exception('Api client need start session', 401);
+    public function __construct($clientId, $clientSecret, StorageInterface $storage = null) {
+
+        if ( $storage === null ) {
+            $this->storage = new SessionStorage();
+        }
         
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
-        $this->path = 'http://app.evalandgo.com/api';
         
         $this->query = array(
             'grant_type'    => 'client_credentials',
@@ -88,6 +97,24 @@ class OAuth2ClientCredential {
         
         $this->http = new GuzzleClient();
         $this->http->addSubscriber(new StripBomPlugin());
+    }
+
+    /**
+     * Get Storage
+     *
+     * @return StorageInterface
+     */
+    public function getStorage() {
+        return $this->storage();
+    }
+
+    /**
+     * Set Storage
+     *
+     * @param StorageInterface $storage
+     */
+    public function setStorage(StorageInterface $storage) {
+        $this->storage = $storage;
     }
 
     /**
@@ -118,19 +145,19 @@ class OAuth2ClientCredential {
     }
     
     private function getToken($query) {
-        unset($_SESSION['oauth2']);
-        if(!isset($_SESSION['oauth2']) || $_SESSION['oauth2']['client_id'] != $query['client_id'] || $_SESSION['oauth2']['client_secret'] != $query['client_secret'] || $_SESSION['oauth2']['expires'] <= time()){
+
+        if ( $this->storage->getClientId() === null || $this->storage->getClientId() != $query['client_id'] || $this->storage->getClientSecret() === null || $this->storage->getClientSecret() != $query['client_secret'] || $this->storage->getAccessToken() === null || $this->storage->getExpires() === null || $this->storage->getExpires() <= time() ) {
+
             $response = $this->http->post($this->path.'/oauth2/token', null, $query, array('exceptions' => false))->send();
             $data = json_decode((string) $response->getBody(), true);
-            if(isset($data['error']))
+            if( isset($data['error']) ) {
                 throw new \Exception($data['error_description'], 401);
+            }
 
-            $_SESSION['oauth2']['access_token'] = $data['access_token'];
-            $_SESSION['oauth2']['expires'] = $data['expires_in'] + time();
-            $_SESSION['oauth2']['client_id'] = $query['client_id'];
-            $_SESSION['oauth2']['client_secret'] = $query['client_secret'];
+            $this->storage->store($query['client_id'], $query['client_secret'], $data['access_token'], $data['expires_in'] + time());
         }
-        
-        return $_SESSION['oauth2']['access_token'];
+
+        return $this->storage->getAccessToken();
+
     }
 }

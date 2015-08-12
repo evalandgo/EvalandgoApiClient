@@ -9,8 +9,8 @@ class Client
 
     protected $credential;
 
-    public function __construct($client_id, $client_secret) {
-        $this->credential = new OAuth2ClientCredential($client_id, $client_secret);
+    public function __construct($client_id, $client_secret, StorageInterface $storage = null) {
+        $this->credential = new OAuth2ClientCredential($client_id, $client_secret, $storage);
     }
 
     public function getCredential()
