@@ -16,7 +16,7 @@ class QuestionRest extends BaseRest
 
     public function create($questionnaireId, Question $question) {
 
-        $json = $this->handler->sendRequest($this->credential, "/questionnaires/$questionnaireId/questions", 'POST', $this->handler->serialize($question));
+        $json = $this->handler->sendRequest($this->credential, "/questionnaires/$questionnaireId/questions", 'POST', $question);
 
         return $this->handler->deserialize($json, 'ApiClient\Model\Question');
     }

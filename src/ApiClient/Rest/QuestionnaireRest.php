@@ -20,13 +20,13 @@ class QuestionnaireRest extends BaseRest
     }
 
     public function create(Questionnaire $questionnaire) {
-        $json = $this->handler->sendRequest($this->credential, '/questionnaires', 'POST', $this->handler->serialize($questionnaire));
+        $json = $this->handler->sendRequest($this->credential, '/questionnaires', 'POST', $questionnaire);
 
         return $this->handler->deserialize($json, 'ApiClient\Model\Questionnaire');
     }
 
     public function update(Questionnaire $questionnaire) {
-        $json = $this->handler->sendRequest($this->credential, '/questionnaires/'.$questionnaire->getId(), 'PATCH', $this->handler->serialize($questionnaire));
+        $json = $this->handler->sendRequest($this->credential, '/questionnaires/'.$questionnaire->getId(), 'PATCH', $questionnaire);
 
         return $this->handler->deserialize($json, 'ApiClient\Model\Questionnaire');
     }
