@@ -82,9 +82,7 @@ class OAuth2ClientCredential {
      */
     public function __construct($clientId, $clientSecret, StorageInterface $storage = null) {
 
-        if ( $storage === null ) {
-            $this->storage = new SessionStorage();
-        }
+        $this->storage = $storage === null ? new SessionStorage() : $storage;
         
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
