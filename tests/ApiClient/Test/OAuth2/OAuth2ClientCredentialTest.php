@@ -1,7 +1,7 @@
 <?php
 
-use ApiClient\OAuth2\OAuth2ClientCredential;
-use ApiClient\Test\Constants;
+use EvalandgoApiClient\OAuth2\OAuth2ClientCredential;
+use EvalandgoApiClient\Test\Constants;
 
 class OAuth2ClientCredentialTest extends \PHPUnit_Framework_TestCase {
 

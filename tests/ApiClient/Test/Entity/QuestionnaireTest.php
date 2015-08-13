@@ -1,17 +1,17 @@
 <?php
 
 
-namespace ApiClient\Entity;
+namespace EvalandgoApiClient\Entity;
 
-use ApiClient\OAuth2\OAuth2ClientCredential;
-use ApiClient\Test\Constants;
-use ApiClient\Entity\Questionnaire;
+use EvalandgoApiClient\OAuth2\OAuth2ClientCredential;
+use EvalandgoApiClient\Test\Constants;
+use EvalandgoApiClient\Entity\Questionnaire;
 
 class QuestionnaireTest extends \PHPUnit_Framework_TestCase {
     
     private $cred;
     private $idLastQuestionnaire;
-    private $class = 'ApiClient\\Entity\\Questionnaire';
+    private $class = 'EvalandgoApiClient\\Entity\\Questionnaire';
 
     public function setUp() {
         $this->cred = new OAuth2ClientCredential(Constants::CLIENT_ID, Constants::CLIENT_SECRET);

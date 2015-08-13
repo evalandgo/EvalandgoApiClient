@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiClient\Rest;
+namespace EvalandgoApiClient\Rest;
 
-use ApiClient\Model\Question;
+use EvalandgoApiClient\Model\Question;
 
 class QuestionRest extends BaseRest
 {
@@ -11,14 +11,14 @@ class QuestionRest extends BaseRest
 
         $json = $this->handler->sendRequest($this->credential, "/questionnaires/$questionnaireId/questions", 'GET');
 
-        return $this->handler->deserialize($json, 'array<ApiClient\Model\Question>');
+        return $this->handler->deserialize($json, 'array<EvalandgoApiClient\Model\Question>');
     }
 
     public function create($questionnaireId, Question $question) {
 
         $json = $this->handler->sendRequest($this->credential, "/questionnaires/$questionnaireId/questions", 'POST', $question);
 
-        return $this->handler->deserialize($json, 'ApiClient\Model\Question');
+        return $this->handler->deserialize($json, 'EvalandgoApiClient\Model\Question');
     }
 
 }

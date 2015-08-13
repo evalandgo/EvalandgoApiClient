@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiClient\Test;
+namespace EvalandgoApiClient\Test;
 
 class Constants {
     const CLIENT_ID = 'testclient';

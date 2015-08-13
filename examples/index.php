@@ -7,7 +7,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 $loader = require __DIR__.'/../vendor/autoload.php';
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-use ApiClient\Client;
+use EvalandgoApiClient\Client;
 
 //$client = new Client('client_id', 'client_secret');
 $client = new Client('j12kt54iica78636d93.55470011', 'f6zkt54feca12e6ce00.32882853');
@@ -21,7 +21,7 @@ $questionnaires = $client->resource('questionnaire')->all();
 $questionnaire = $client->resource('questionnaire')->get($questionnaires[0]->getId());
 var_dump($questionnaire);
 
-$questionnaire = new \ApiClient\Model\Questionnaire();
+$questionnaire = new \EvalandgoApiClient\Model\Questionnaire();
 $questionnaire->setTitle('questionnaire test');
 $questionnaire = $client->resource('questionnaire')->create($questionnaire);
 var_dump($questionnaire);
@@ -35,7 +35,7 @@ echo '---- Question ----';
 $questionnaires = $client->resource('questionnaire')->all();
 $questions = $client->resource('question')->all($questionnaires[0]->getId());
 
-/*$question = new \ApiClient\Model\Question();
+/*$question = new \EvalandgoApiClient\Model\Question();
 $question->setTitle('question test');
 $question->setType('u');
 $question = $client->resource('question')->create($questionnaires[0]->getId(), $question);

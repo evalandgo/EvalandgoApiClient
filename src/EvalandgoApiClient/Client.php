@@ -1,9 +1,9 @@
 <?php
 
-namespace ApiClient;
+namespace EvalandgoApiClient;
 
-use ApiClient\OAuth2\OAuth2ClientCredential;
-use ApiClient\OAuth2\Storage\StorageInterface;
+use EvalandgoApiClient\OAuth2\OAuth2ClientCredential;
+use EvalandgoApiClient\OAuth2\Storage\StorageInterface;
 
 class Client
 {
@@ -25,7 +25,7 @@ class Client
     }
 
     public function resource($name) {
-        $className = '\\ApiClient\\Rest\\'.ucfirst($name).'Rest';
+        $className = '\\EvalandgoApiClient\\Rest\\'.ucfirst($name).'Rest';
 
         $resource = new $className();
         $resource->setCredential($this->credential);

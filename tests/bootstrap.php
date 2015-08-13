@@ -8,4 +8,4 @@ $loader = require __DIR__.'/../vendor/autoload.php';
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-$loader->add('ApiClient\\Test', __DIR__);
+$loader->add('EvalandgoApiClient\\Test', __DIR__);

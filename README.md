@@ -14,12 +14,12 @@ In composer.json file, add :
 ## OAuth2 Storage
 In order to don't generate a token before each request, this library stores the OAuth2 information in native sessions.
 
-Default storage object : ApiClient\OAuth2\Storage\SessionStorage
+Default storage object : EvalandgoApiClient\OAuth2\Storage\SessionStorage
 
-It is possible to use a custom storage. This class must implement ApiClient\OAuth2\Storage\StorageInterface.
+It is possible to use a custom storage. This class must implement EvalandgoApiClient\OAuth2\Storage\StorageInterface.
 ```php
 $storage = new MyApp\OAuth2\Storage\FileStorage();
-$client = new ApiClient\Client('CLIENT_ID', 'CLIENT_SECRET', $storage);
+$client = new EvalandgoApiClient\Client('CLIENT_ID', 'CLIENT_SECRET', $storage);
 ```
 
 ## Usage Example
@@ -31,7 +31,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 $loader = require __DIR__.'/../vendor/autoload.php';
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-$client = new ApiClient\Client('CLIENT_ID', 'CLIENT_SECRET');
+$client = new EvalandgoApiClient\Client('CLIENT_ID', 'CLIENT_SECRET');
 
 $questionnaires = $client->resource('questionnaire')->all();
 

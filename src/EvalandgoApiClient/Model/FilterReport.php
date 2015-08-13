@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiClient\Model;
+namespace EvalandgoApiClient\Model;
 
 use JMS\Serializer\Annotation\Type;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiClient\Rest;
+namespace EvalandgoApiClient\Rest;
 
-use ApiClient\Model\FolderQuestionnaire;
+use EvalandgoApiClient\Model\FolderQuestionnaire;
 
 class FolderQuestionnaireRest extends BaseRest
 {
@@ -10,7 +10,7 @@ class FolderQuestionnaireRest extends BaseRest
     public function all() {
         $json = $this->handler->sendRequest($this->credential, '/folder_questionnaires', 'GET');
 
-        return $this->handler->deserialize($json, 'array<ApiClient\Model\FolderQuestionnaire>');
+        return $this->handler->deserialize($json, 'array<EvalandgoApiClient\Model\FolderQuestionnaire>');
     }
 
 }

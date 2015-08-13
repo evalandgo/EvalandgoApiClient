@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiClient\Rest;
+namespace EvalandgoApiClient\Rest;
 
-use ApiClient\OAuth2\OAuth2ClientCredential;
+use EvalandgoApiClient\OAuth2\OAuth2ClientCredential;
 
 abstract class BaseRest
 {

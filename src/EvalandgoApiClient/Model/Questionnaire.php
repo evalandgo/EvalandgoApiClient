@@ -1,31 +1,36 @@
 <?php
 
-namespace ApiClient\Model;
+namespace EvalandgoApiClient\Model;
 
 use JMS\Serializer\Annotation\Type;
 
-class Report
+class Questionnaire
 {
 
     /**
      * @Type("integer")
      */
-    protected $id;
+    private $id;
+
+    /**
+     * @Type("string")
+     */
+    private $title;
+
+    /**
+     * @Type("boolean")
+     */
+    private $close;
 
     /**
      * @Type("integer")
      */
-    protected $questionnaireId;
+    private $folderId;
 
     /**
      * @Type("string")
      */
-    protected $title;
-
-    /**
-     * @Type("string")
-     */
-    protected $publicUrl;
+    private $publicUrl;
 
     public function setId($id) {
         $this->id = $id;
@@ -35,20 +40,28 @@ class Report
         return $this->id;
     }
 
-    public function setQuestionnaireId($questionnaireId) {
-        $this->questionnaireId = $questionnaireId;
-    }
-
-    public function getQuestionnaireId() {
-        return $this->questionnaireId;
-    }
-
     public function setTitle($title) {
         $this->title = $title;
     }
 
     public function getTitle() {
         return $this->title;
+    }
+
+    public function setClose($close) {
+        $this->close = $close;
+    }
+
+    public function getClose() {
+        return $this->close;
+    }
+
+    public function setFolderId($folderId) {
+        $this->folderId = $folderId;
+    }
+
+    public function getFolderId() {
+        return $this->folderId;
     }
 
     public function setPublicUrl($publicUrl) {

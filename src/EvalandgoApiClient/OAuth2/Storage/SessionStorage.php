@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiClient\OAuth2\Storage;
+namespace EvalandgoApiClient\OAuth2\Storage;
 
 class SessionStorage implements StorageInterface
 {
